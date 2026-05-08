@@ -9,7 +9,7 @@ namespace NeuroHealth
          * ============================================================
          * PROYECTO: NeuroHealth - Sistema de Triaje de Emergencias
          * ============================================================
-         * Integrantes:
+         * Integrantes: Domé Florencia, Micaela Bahurlet, Spinetta Carlos
          * -
          * -
          * -
@@ -481,12 +481,13 @@ namespace NeuroHealth
         #endregion
 
         #region FUNCIONES DE LECTURA Y VALIDACIÓN
-
-        static int LeerEntero(string mensaje)
+        // Vamos a crear funciones para que cuando los llamemos más arriba tengamos todo validado.
+        static int LeerEntero(string mensaje) 
         {
-            int resultado;
+            int resultado; 
+            //Creamos una variable resultado para almacenar el valor resultante de la comprobación de abajo. 
             Console.Write(mensaje);
-            while (!int.TryParse(Console.ReadLine(), out resultado)) 
+            while (!int.TryParse(Console.ReadLine(), out resultado)) //si el mensaje no se puede convertir a entero, 
             {
                 Console.Write("Entrada inválida. Ingrese un número entero: ");
             }

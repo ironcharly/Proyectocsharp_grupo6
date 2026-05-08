@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("tp1_NeuroHealth_Grupo6")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e54d83e3a1f1592bd4af02c356a8bce5e325e2e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("tp1_NeuroHealth_Grupo6")]
