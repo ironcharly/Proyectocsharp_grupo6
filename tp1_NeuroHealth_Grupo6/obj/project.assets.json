@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {}
   },
@@ -8,30 +8,29 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Flia Spinetta\\.nuget\\packages\\": {}
+    "/Users/micaelabahurlet/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\github\\Proyectocsharp_grupo6\\tp1_NeuroHealth_Grupo6\\tp1_NeuroHealth_Grupo6.csproj",
+      "projectUniqueName": "/Users/micaelabahurlet/Desktop/Proyectocsharp_grupo6/tp1_NeuroHealth_Grupo6/tp1_NeuroHealth_Grupo6.csproj",
       "projectName": "tp1_NeuroHealth_Grupo6",
-      "projectPath": "D:\\OneDrive\\github\\Proyectocsharp_grupo6\\tp1_NeuroHealth_Grupo6\\tp1_NeuroHealth_Grupo6.csproj",
-      "packagesPath": "C:\\Users\\Flia Spinetta\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\github\\Proyectocsharp_grupo6\\tp1_NeuroHealth_Grupo6\\obj\\",
+      "projectPath": "/Users/micaelabahurlet/Desktop/Proyectocsharp_grupo6/tp1_NeuroHealth_Grupo6/tp1_NeuroHealth_Grupo6.csproj",
+      "packagesPath": "/Users/micaelabahurlet/.nuget/packages/",
+      "outputPath": "/Users/micaelabahurlet/Desktop/Proyectocsharp_grupo6/tp1_NeuroHealth_Grupo6/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Flia Spinetta\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/micaelabahurlet/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -46,10 +45,11 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "imports": [
           "net461",
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/Users/micaelabahurlet/.dotnet/sdk/10.0.300/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

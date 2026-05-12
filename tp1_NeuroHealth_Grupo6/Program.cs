@@ -303,9 +303,6 @@ namespace NeuroHealth
             foreach (var p in pacientesAdmitidos) if (p.Dni == dni) return true;
             return false;
         }
-            // TODO: crear el paciente con NivelUrgencia.SinEvaluar.
-
-            // TODO: agregarlo a la cola de espera.
         
 
         #endregion
@@ -367,21 +364,82 @@ namespace NeuroHealth
         #endregion
 
         #region OBSERVACIONES MÉDICAS
-
+        //para probar la opción 4 del menú, DNI válidos 30111222 o 44444444 
         static void RegistrarObservacion()
         {
-            // TODO: pedir DNI del paciente admitido.
-            // TODO: permitir -1 para volver.
-            // TODO: validar que el paciente exista en admitidos.
-            // TODO: pedir texto de observación.
-            // TODO: agregar observación a la pila.
+            Console.WriteLine("\n--- REGISTRAR OBSERVACIÓN MÉDICA ---");
+            // pedir DNI del paciente admitido.
+            long dni = LeerDniOCancelar("Ingrese DNI del paciente admitido (-1 para volver): ");
+            
+            // permitir -1 para volver.
+            if (dni == -1)
+            {
+                return;
+            }
+            
+            // validar que el paciente exista en admitidos.
+            bool pacienteEncontrado = false;
+            string nombrePaciente = "";
+            foreach (var p in pacientesAdmitidos)
+            {
+                if (p.Dni == dni)
+                {
+                    pacienteEncontrado = true;
+                    nombrePaciente = p.NombreApellido;
+                    break;
+                }
+            }
+            
+            if (!pacienteEncontrado)
+            {
+                Console.WriteLine("Error: El paciente no está en la lista de admitidos.");
+                return;
+            }
+            
+            Console.WriteLine($"Paciente encontrado: {nombrePaciente}");
+            
+            // pedir texto de observación.
+            string texto = LeerTextoObligatorio("Ingrese la observación médica: ");
+            
+            // agregar observación a la pila.
+            Observacion nuevaObservacion = new Observacion
+            {
+                DniPaciente = dni,
+                Texto = texto,
+                Fecha = DateTime.Now
+            };
+            observaciones.Push(nuevaObservacion);
+            
+            Console.WriteLine("Observación registrada exitosamente.");
         }
 
         static void MostrarObservaciones()
         {
-            // TODO: pedir DNI del paciente.
-            // TODO: permitir -1 para volver.
-            // TODO: mostrar observaciones desde la más reciente a la más antigua.
+            Console.WriteLine("\n--- MOSTRAR OBSERVACIONES DE PACIENTE ---");
+            // pedir DNI del paciente.
+            long dni = LeerDniOCancelar("Ingrese DNI del paciente (-1 para volver): ");
+            
+            // permitir -1 para volver.
+            if (dni == -1)
+            {
+                return;
+            }
+            
+            // mostrar observaciones desde la más reciente a la más antigua.
+            bool hayObservaciones = false;
+            foreach (var obs in observaciones)
+            {
+                if (obs.DniPaciente == dni)
+                {
+                    Console.WriteLine($"[{obs.Fecha}] {obs.Texto}");
+                    hayObservaciones = true;
+                }
+            }
+            
+            if (!hayObservaciones)
+            {
+                Console.WriteLine("No hay observaciones para este paciente.");
+            }
         }
 
         #endregion
@@ -390,57 +448,175 @@ namespace NeuroHealth
 
         static void ListarPacientesAdmitidos()
         {
-            // TODO: mostrar DNI, nombre, edad, motivo y nivel de urgencia.
+            Console.WriteLine("\n--- LISTA DE PACIENTES ADMITIDOS ---");
+            // mostrar DNI, nombre, edad, motivo y nivel de urgencia.
+            if (pacientesAdmitidos.Count == 0)
+            {
+                Console.WriteLine("No hay pacientes admitidos.");
+                return;
+            }
+            
+            Console.WriteLine("DNI\t\tNombre\t\t\tEdad\tMotivo\t\t\tNivel");
+            Console.WriteLine("----------------------------------------------------------------------------------------");
+            foreach (var p in pacientesAdmitidos)
+            {
+                Console.WriteLine($"{p.Dni}\t{p.NombreApellido}\t{p.Edad}\t{p.Motivo}\t\t{p.Nivel}");
+            }
         }
 
         static void MostrarDatosPaciente(Paciente paciente)
         {
-            // TODO: mostrar los datos de un paciente de manera clara.
+            // mostrar los datos de un paciente de manera clara.
+            Console.WriteLine("\n--- DATOS DEL PACIENTE ---");
+            Console.WriteLine($"DNI: {paciente.Dni}");
+            Console.WriteLine($"Nombre: {paciente.NombreApellido}");
+            Console.WriteLine($"Edad: {paciente.Edad}");
+            Console.WriteLine($"Motivo de consulta: {paciente.Motivo}");
+            Console.WriteLine($"Nivel de urgencia: {paciente.Nivel}");
+            Console.WriteLine($"Fecha de ingreso: {paciente.FechaIngreso}");
+            Console.WriteLine($"Pulso: {paciente.Signos.Pulso} lpm");
+            Console.WriteLine($"Temperatura: {paciente.Signos.Temperatura} °C");
+            Console.WriteLine($"Presión arterial: {paciente.Signos.Presion}");
+            Console.WriteLine($"Saturación de oxígeno: {paciente.Signos.Saturacion} %");
+            Console.WriteLine($"Nivel de dolor: {paciente.Signos.Dolor}");
         }
 
         static void FiltrarPorUrgencia()
         {
-            // TODO: pedir nivel de urgencia.
-            // TODO: permitir -1 para volver.
-            // TODO: mostrar pacientes admitidos que coincidan con el nivel seleccionado.
+            Console.WriteLine("\n--- FILTRAR POR NIVEL DE URGENCIA ---");
+            // pedir nivel de urgencia.
+            NivelUrgencia nivel = LeerNivelUrgencia();
+            
+            // permitir -1 para volver.
+            if (nivel == NivelUrgencia.SinEvaluar)
+            {
+                return;
+            }
+            
+            // mostrar pacientes admitidos que coincidan con el nivel seleccionado.
+            Console.WriteLine($"\n--- PACIENTES CON NIVEL {nivel} ---");
+            bool hayPacientes = false;
+            foreach (var p in pacientesAdmitidos)
+            {
+                if (p.Nivel == nivel)
+                {
+                    Console.WriteLine($"DNI: {p.Dni} - Nombre: {p.NombreApellido} - Edad: {p.Edad} - Nivel: {p.Nivel}");
+                    hayPacientes = true;
+                }
+            }
+            
+            if (!hayPacientes)
+            {
+                Console.WriteLine("No hay pacientes con ese nivel de urgencia.");
+            }
         }
 
         #endregion
 
         #region BÚSQUEDAS
 
+        // aqui llamamos funciones auxiliares
         static void BuscarPacientePorDni()
         {
-            // TODO: pedir DNI a buscar.
-            // TODO: permitir -1 para volver.
-            // TODO: buscar en pacientes admitidos con búsqueda lineal.
-            // TODO: ordenar una copia por DNI.
-            // TODO: buscar con búsqueda binaria recursiva.
-            // TODO: mostrar cantidad de pasos de cada búsqueda.
+            Console.WriteLine("\n--- BUSCAR PACIENTE POR DNI ---");
+            // pedir DNI a buscar.
+            long dni = LeerDniOCancelar("Ingrese DNI a buscar (-1 para volver): ");
+            
+            // permitir -1 para volver.
+            if (dni == -1)
+            {
+                return;
+            }
+            
+            // buscar en pacientes admitidos con búsqueda lineal, recorre uno por unon
+            int pasosLineal = 0;
+            int indiceLineal = BuscarLineal(dni, ref pasosLineal);
+            
+            // ordenar una copia por DNI.
+            List<Paciente> copiaOrdenada = CopiarListaPacientes();
+            OrdenarPacientesPorDni(copiaOrdenada);
+            
+            // buscar con búsqueda binaria recursiva, divide por la mitad
+            int pasosBinaria = 0;
+            //para que busque en la lista ordenada de paccientes, divide a la mitad hasta encontrar el paciente o ver que no existe. LOGICA: si el DNI buscado es menor al del medio, llama a la funncion con la mitad izquierda, si es mayor con la derecha, esto lo repetimos hasta encontrarlo o nno.
+            int indiceBinaria = BuscarBinariaRecursiva(copiaOrdenada, dni, 0, copiaOrdenada.Count - 1, ref pasosBinaria);
+            
+            // mostrar cantidad de pasos de cada búsqueda, asi muestra comparaciones de lo que se hizo hasta encontrar. 
+            Console.WriteLine($"\nResultados de búsqueda para DNI {dni}:");
+            Console.WriteLine($"Búsqueda lineal: {pasosLineal} pasos - Encontrado: {(indiceLineal != -1 ? "Sí" : "No")}");
+            Console.WriteLine($"Búsqueda binaria: {pasosBinaria} pasos - Encontrado: {(indiceBinaria != -1 ? "Sí" : "No")}");
+            
+            if (indiceLineal != -1)
+            {
+                MostrarDatosPaciente(pacientesAdmitidos[indiceLineal]);
+            }
         }
 
         static int BuscarLineal(long dniBuscado, ref int pasos)
         {
-            // TODO: implementar búsqueda lineal en la lista de pacientes admitidos.
+            // implementar búsqueda lineal en la lista de pacientes admitidos.
+            //para que recorra 1 por uno desde principio a fin, si lo encuentra devuelve su posición
+            for (int i = 0; i < pacientesAdmitidos.Count; i++)
+            {
+                pasos++;
+                if (pacientesAdmitidos[i].Dni == dniBuscado)
+                {
+                    return i; //para que devuelva la posición de donde lo encontro 
+                }
+            }
             return -1;
         }
-
         static int BuscarBinariaRecursiva(List<Paciente> listaOrdenada, long dniBuscado, int inicio, int fin, ref int pasos)
         {
-            // TODO: implementar búsqueda binaria recursiva.
-            return -1;
+            // implementar búsqueda binaria recursiva.
+            if (inicio > fin)
+            {
+                return -1;
+            }
+            
+            pasos++;
+            int medio = (inicio + fin) / 2;
+            //si el DNI uscado es IGUAL al del medio, lo encontró, si es menor busca en la mitad izquierda o si es mayor en la derecha. Repite hasta encontrarlo o agotar la lista
+            if (listaOrdenada[medio].Dni == dniBuscado)
+            {
+                return medio;
+            }
+            else if (listaOrdenada[medio].Dni > dniBuscado)
+            {
+                return BuscarBinariaRecursiva(listaOrdenada, dniBuscado, inicio, medio - 1, ref pasos);
+            }
+            else
+            {
+                return BuscarBinariaRecursiva(listaOrdenada, dniBuscado, medio + 1, fin, ref pasos);
+            }
         }
 
         static List<Paciente> CopiarListaPacientes()
         {
-            // TODO: copiar manualmente la lista de pacientes admitidos.
-            return new List<Paciente>();
+            // copiar manualmente la lista de pacientes admitidos.
+            List<Paciente> copia = new List<Paciente>();
+            foreach (var p in pacientesAdmitidos)
+            {
+                copia.Add(p); //para que agregue cada paciente a la nueva lsita
+            }
+            return copia;
         }
 
         static void OrdenarPacientesPorDni(List<Paciente> lista)
         {
-            // TODO: ordenar por DNI.
-            // Puede utilizarse un algoritmo simple visto en clase.
+            // ordenar por DNI con burbuja simple.
+            for (int i = 0; i < lista.Count - 1; i++) //recorre toda la lista
+            {
+                for (int j = 0; j < lista.Count - 1 - i; j++) //para que compare elementos 
+                {
+                    if (lista[j].Dni > lista[j + 1].Dni) //para que si el DNI actual es mayor al siguiente, los intercambia
+                    {
+                        Paciente temp = lista[j];
+                        lista[j] = lista[j + 1];
+                        lista[j + 1] = temp;
+                    }
+                }
+            }
         }
 
         #endregion
