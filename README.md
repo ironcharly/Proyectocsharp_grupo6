@@ -173,11 +173,11 @@ El sistema deberá mostrar una interpretación simple:
 1. Registrar paciente - Línea 263-298 - COMPLETO
 2. Mostrar cola de espera - Línea 315-330 - COMPLETO
 3. Evaluar paciente (triaje automático) - Línea 332-365 - COMPLETO
-4. ~~Registrar observación médica~~ - Línea 368-418 - COMPLETO
-5. ~~Mostrar observaciones de un paciente~~ - Línea 416-443 - COMPLETO
-6. ~~Buscar paciente por DNI~~ - Línea 518-551 - COMPLETO
-7. ~~Listar pacientes admitidos~~ - Línea 449-465 - COMPLETO
-8. ~~Filtrar por nivel de urgencia~~ - Línea 484-512 - COMPLETO
+4. Registrar observación médica - Línea 368-418 - COMPLETO
+5. Mostrar observaciones de un paciente - Línea 416-443 - COMPLETO
+6. Buscar paciente por DNI - Línea 518-551 - COMPLETO
+7. Listar pacientes admitidos - Línea 449-465 - COMPLETO
+8. Filtrar por nivel de urgencia - Línea 484-512 - COMPLETO
 9. Funciones de validación de entrada - Línea 485-620 - COMPLETO
 10. Carga de datos de prueba - Línea 201-257 - COMPLETO
 
@@ -186,11 +186,11 @@ El sistema deberá mostrar una interpretación simple:
 10. Mostrar estadísticas generales - Línea 629-636 - FALTA-  SOLO ESQUELETO
 
 ### FUNCIONES AUXILIARES COMPLETADAS:
-- ~~MostrarDatosPaciente~~ - Línea 467-482 - COMPLETO
-- ~~BuscarLineal~~ - Línea 554-566 - COMPLETO
-- ~~BuscarBinariaRecursiva~~ - Línea 568-583 - COMPLETO
-- ~~CopiarListaPacientes~~ - Línea 585-594 - COMPLETO
-- ~~OrdenarPacientesPorDni~~ - Línea 596-611 - COMPLETO
+- MostrarDatosPaciente - Línea 467-482 - COMPLETO
+- BuscarLineal - Línea 554-566 - COMPLETO
+- BuscarBinariaRecursiva - Línea 568-583 - COMPLETO
+- CopiarListaPacientes - Línea 585-594 - COMPLETO
+- OrdenarPacientesPorDni - Línea 596-611 - COMPLETO
 
 ### FUNCIONES AUXILIARES FALTANTES:
 - SumarPuntajesRecursivo -  FALTA- Línea 639-644
