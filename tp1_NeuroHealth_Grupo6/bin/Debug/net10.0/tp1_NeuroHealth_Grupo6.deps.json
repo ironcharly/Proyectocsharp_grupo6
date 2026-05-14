@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "tp1_NeuroHealth_Grupo6/1.0.0": {
+        "runtime": {
+          "tp1_NeuroHealth_Grupo6.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "tp1_NeuroHealth_Grupo6/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
