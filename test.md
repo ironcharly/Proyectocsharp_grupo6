@@ -56,8 +56,26 @@
 - Verás pacientes admitidos con ese nivel
 - Ingresa -1 para cancelar y volver al menú
 
+## 9. Calcular puntaje de riesgo recursivo
+- Selecciona opción 7
+- Ingresa puntaje por Temperatura (0-10, ej: 8)
+- Ingresa puntaje por Pulso (0-10, ej: 6)
+- Ingresa puntaje por Saturación (0-10, ej: 3)
+- Ingresa puntaje por Dolor (0-10, ej: 7)
+- Verás el puntaje total (0-40) y la interpretación (RIESGO BAJO/MODERADO/CRÍTICO)
+
+## 10. Mostrar estadísticas generales
+- Selecciona opción 10
+- Verás cantidad de pacientes en espera y admitidos
+- Verás distribución por nivel de urgencia (Rojo/Amarillo/Verde)
+- Verás edad promedio de pacientes admitidos
+- Verás porcentaje de pacientes críticos (Rojo)
+- Si no hay pacientes admitidos, mostrará mensaje correspondiente
+
 ## Casos especiales a probar:
 - DNI inválido en búsqueda de paciente
 - DNI sin observaciones en mostrar observaciones
 - Nivel de urgencia sin pacientes en filtro
 - Cancelación con -1 en todas las funciones que lo permitan
+- Calcular puntaje con valores extremos (0 o 10 en todos los campos)
+- Mostrar estadísticas sin pacientes admitidos

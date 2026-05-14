@@ -182,8 +182,8 @@ El sistema deberá mostrar una interpretación simple:
 10. Carga de datos de prueba - Línea 201-257 - COMPLETO
 
 ### FUNCIONALIDADES FALTANTES:
-7. Calcular puntaje de riesgo recursivo - Línea 613-627 - FALTA-  SOLO ESQUELETO
-10. Mostrar estadísticas generales - Línea 629-636 - FALTA-  SOLO ESQUELETO
+7. Calcular puntaje de riesgo recursivo - Línea 613-627 - COMPLETO
+10. Mostrar estadísticas generales - Línea 629-636 - COMPLETO
 
 ### FUNCIONES AUXILIARES COMPLETADAS:
 - MostrarDatosPaciente - Línea 467-482 - COMPLETO
@@ -191,6 +191,5 @@ El sistema deberá mostrar una interpretación simple:
 - BuscarBinariaRecursiva - Línea 568-583 - COMPLETO
 - CopiarListaPacientes - Línea 585-594 - COMPLETO
 - OrdenarPacientesPorDni - Línea 596-611 - COMPLETO
+- SumarPuntajesRecursivo -  COMPLETO
 
-### FUNCIONES AUXILIARES FALTANTES:
-- SumarPuntajesRecursivo -  FALTA- Línea 639-644
