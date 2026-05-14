@@ -622,39 +622,82 @@ namespace NeuroHealth
         #endregion
 
         #region RECURSIVIDAD
-
+        //CHEQUEAR LO HIZO FLOR
         static void CalcularPuntajeRiesgo()
         {
-            // TODO: cargar un arreglo de 4 puntajes entre 0 y 10.
-            // Posiciones sugeridas:
-            // 0 = temperatura
-            // 1 = pulso
-            // 2 = saturación
-            // 3 = dolor
-            // TODO: llamar a la función recursiva.
-            // TODO: mostrar puntaje total e interpretación.
+        
+            Console.WriteLine("\n--- CÁLCULO DE PUNTAJE DE RIESGO RECURSIVO ---");
+            int[] puntajes = new int[4];
+
+            // Cargamos puntajes (0-10) basados en la gravedad percibida
+            puntajes[0] = LeerEnteroEnRango("Puntaje por Temperatura (0-10): ", 0, 10);
+            puntajes[1] = LeerEnteroEnRango("Puntaje por Pulso (0-10): ", 0, 10);
+            puntajes[2] = LeerEnteroEnRango("Puntaje por Saturación (0-10): ", 0, 10);
+            puntajes[3] = LeerEnteroEnRango("Puntaje por Dolor (0-10): ", 0, 10);
+
+            // Llamada inicial: empezamos desde el índice 0
+            int total = SumarPuntajesRecursivo(puntajes, 0);
+
+            Console.WriteLine($"\nEl puntaje de riesgo total es: {total} / 40");
+
+            if (total >= 30) Console.WriteLine("Interpretación: RIESGO CRÍTICO.");
+            else if (total >= 15) Console.WriteLine("Interpretación: RIESGO MODERADO.");
+            else Console.WriteLine("Interpretación: RIESGO BAJO.");
         }
 
         static int SumarPuntajesRecursivo(int[] puntajes, int indice)
         {
-            // TODO: implementar suma recursiva del arreglo.
-            return 0;
+            // Caso base: si el índice llega al final del arreglo, retornamos 0
+            if (indice == puntajes.Length)
+            {
+                return 0;
+            }
+            // Caso recursivo: sumamos el valor actual + la suma del resto del arreglo
+            return puntajes[indice] + SumarPuntajesRecursivo(puntajes, indice + 1);
         }
 
+      
         #endregion
+
+        //CHEQUEAR LO HIZO FLOR
 
         #region ESTADÍSTICAS
 
+     
         static void MostrarEstadisticas()
         {
-            // TODO: mostrar cantidad de pacientes en espera.
-            // TODO: mostrar cantidad de pacientes admitidos.
-            // TODO: mostrar cantidad por nivel de urgencia.
-            // TODO: calcular edad promedio.
-            // TODO: calcular porcentaje de pacientes críticos.
+            Console.WriteLine("\n--- ESTADÍSTICAS GENERALES ---");
+            Console.WriteLine($"Pacientes en espera: {colaEspera.Count}");
+            Console.WriteLine($"Pacientes admitidos: {pacientesAdmitidos.Count}");
+
+            if (pacientesAdmitidos.Count > 0)
+            {
+                int rojos = 0, amarillos = 0, verdes = 0;
+                double sumaEdades = 0;
+
+                foreach (var p in pacientesAdmitidos)
+                {
+                    sumaEdades += p.Edad;
+                    if (p.Nivel == NivelUrgencia.Rojo) rojos++;
+                    else if (p.Nivel == NivelUrgencia.Amarillo) amarillos++;
+                    else verdes++;
+                }
+
+                double promedioEdad = sumaEdades / pacientesAdmitidos.Count;
+                double porcentajeCriticos = (double)rojos / pacientesAdmitidos.Count * 100;
+
+                Console.WriteLine($"- Distribución por Urgencia: Rojo ({rojos}), Amarillo ({amarillos}), Verde ({verdes})");
+                Console.WriteLine($"- Edad promedio: {promedioEdad:F1} años");
+                Console.WriteLine($"- Porcentaje de pacientes críticos (Rojo): {porcentajeCriticos:F1}%");
+            }
+            else
+            {
+                Console.WriteLine("No hay datos suficientes en admitidos para calcular promedios.");
+            }
         }
 
-        #endregion
+       
+#endregion
 
         #region FUNCIONES DE LECTURA Y VALIDACIÓN
         // Vamos a crear funciones para que cuando los llamemos más arriba tengamos todo validado.
