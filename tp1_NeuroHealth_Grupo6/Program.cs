@@ -72,6 +72,7 @@ namespace NeuroHealth
 
         // Sugerencia de modelado: representar al paciente como un registro de datos.
         // El grupo puede modificar esta representación si lo justifica correctamente.
+        // Creamos como si fuera una ficha técnica o médica del paciente
         record Paciente(
             long Dni,
             string NombreApellido,
@@ -94,13 +95,8 @@ namespace NeuroHealth
 
         #region ESTRUCTURAS PRINCIPALES
 
-        // TODO: declarar las estructuras principales del sistema.
-        // Sugerencias según la consigna:
-        // - Cola de espera: Queue<Paciente>
-        // - Lista de pacientes admitidos: List<Paciente>
-        // - Pila de observaciones: Stack<Observacion>
+        // Estructura que van quedando en memoria mientras la app funciona
 
-        // Ejemplo de declaración posible:
         static Queue<Paciente> colaEspera = new Queue<Paciente>();
         static List<Paciente> pacientesAdmitidos = new List<Paciente>();
         static Stack<Observacion> observaciones = new Stack<Observacion>();
@@ -111,8 +107,7 @@ namespace NeuroHealth
 
         static void Main(string[] args)
         {
-            // TODO: inicializar estructuras si corresponde.
-            // TODO: cargar casos de prueba si el grupo decide incluirlos.
+            // Inyección automática de datos simulados creados por nosotros para pruebas inmediatas
             CargarCasosDePrueba();
             bool salir = false;
 
@@ -263,7 +258,7 @@ namespace NeuroHealth
         static void RegistrarPaciente()
         {
             Console.WriteLine("\n--- REGISTRO DE PACIENTE ---");
-            //pedimos el DNI.
+            //capturamos datos y ponemos en cola un nuevo paciente.
 
 
             long dni;
@@ -275,14 +270,12 @@ namespace NeuroHealth
                 else if (ExisteDniEnSistema(dni)) Console.WriteLine("Error: El DNI ya se encuentra registrado en el sistema.");
             } while (dni <= 0 || ExisteDniEnSistema(dni));
 
-            // TODO: pedir apellido y nombre.
             string nombre = LeerTextoObligatorio("Ingrese Apellido y Nombre: ");
-            // TODO: pedir edad.
             int edad = LeerEnteroEnRango("Ingrese Edad (0-120): ", 0, 120);
 
-            // TODO: pedir motivo de consulta.
+            // Pedimos motivo de consulta.
             MotivoConsulta motivo = LeerMotivoConsulta();
-            // TODO: pedir signos vitales.
+
             Console.WriteLine("\n-- Signos Vitales --");
             SignosVitales signos = new SignosVitales
             {
@@ -296,7 +289,7 @@ namespace NeuroHealth
             colaEspera.Enqueue(nuevoPaciente);
             Console.WriteLine($"\nPaciente {nombre} agregado a la cola de espera exitosamente.");
         }
-
+        // Acá comprobamos si el Dni ya existe para no generar duplicados
         static bool ExisteDniEnSistema(long dni)
         {
             foreach (var p in colaEspera) if (p.Dni == dni) return true;
@@ -325,7 +318,7 @@ namespace NeuroHealth
                 posicion++;
             }
         }
-
+        // Evaluamos al primer paciente en cola y lo saca de la misma
         static void EvaluarPaciente()
         {
             if (colaEspera.Count == 0)
