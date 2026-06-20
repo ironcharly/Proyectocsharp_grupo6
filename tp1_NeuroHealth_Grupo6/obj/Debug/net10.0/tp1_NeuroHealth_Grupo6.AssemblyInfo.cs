@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("tp1_NeuroHealth_Grupo6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7d1c12605960b4b0e218a570d64d59b35470c12")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3558618b1da40775b99c618aba090ebecfdd56c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("tp1_NeuroHealth_Grupo6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("tp1_NeuroHealth_Grupo6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
